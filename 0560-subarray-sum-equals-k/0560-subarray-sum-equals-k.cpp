@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int> mpp;
+        int preSum = 0;
+        int count = 0;
+        for(int i =0 ;i<nums.size();i++){
+            preSum += nums[i];
+            if(preSum == k) count++;
+            int remove = preSum - k;
+            if(mpp.find(remove)!=mpp.end()){
+                count += mpp[remove];
+            }
+            mpp[preSum]++;
+        }
+        return count;
+    }
+};
